@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Verbalized",
+  "description": "A Chrome extension that speaks selected text using ResponsiveVoice API for text-to-speech and Google Cloud Vision API for text recognition.",
+  "version": "1.0",
+  "icons": {
+    "48": "verbalized.png"
+  },
+  "background": {
+    "scripts": ["background.js", "content.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://vision.googleapis.com/",
+    "https://*/",
+    "http://translate.google.com/*",
+    "https://translate.google.com/*",
+    "http://responsivevoice.org/*",
+    "https://responsivevoice.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://code.responsivevoice.org/; object-src 'self'",
+  "browser_action": {
+    "default_popup": "popup.html"
+  }
+}
